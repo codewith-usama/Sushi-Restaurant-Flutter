@@ -15,6 +15,9 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
+  // isFav
+  bool isFav = false;
+
   // navigate to food item detail page
   void navigateToFoodDetails(int index) {
     // get th shop and it's menu
@@ -189,13 +192,22 @@ class _MenuPageState extends State<MenuPage> {
                     ),
                   ],
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.favorite_outline,
-                    color: Colors.grey,
-                    size: 30,
-                  ),
+                Consumer<ShopModel>(
+                  builder: (context, value, child) {
+                    return IconButton(
+                      onPressed: () {
+                        isFav = !isFav;
+                        value.setFav(isFav);
+                      },
+                      icon: Icon(
+                        value.getFav
+                            ? Icons.favorite_outlined
+                            : Icons.favorite_border,
+                        color: Colors.grey,
+                        size: 30,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

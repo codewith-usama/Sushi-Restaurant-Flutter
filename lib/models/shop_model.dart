@@ -2,6 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:sushi_restaurant/models/food_model.dart';
 
 class ShopModel extends ChangeNotifier {
+  // favourite
+  bool isFav = false;
+
+  bool get getFav => isFav;
+
+  void setFav(bool fav) {
+    isFav = fav;
+    notifyListeners();
+  }
+
   // food menu
   final List<FoodModel> _foodMenu = [
     FoodModel(
